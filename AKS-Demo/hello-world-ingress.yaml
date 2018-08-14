@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: 23.99.54.73/32
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: demo-aks-ingress.westus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: aks-helloworld
+          servicePort: 80
+      - path: /hello-world-two
+        backend:
+          serviceName: ingress-demo
+          servicePort: 80
