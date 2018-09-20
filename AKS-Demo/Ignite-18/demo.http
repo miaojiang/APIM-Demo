@@ -1,0 +1,25 @@
+### Call AKS Directly
+POST https://aks-demo.westus.cloudapp.azure.com
+Content-Type: application/json
+
+{
+    "itemId": "1",
+    "quantity": "5"
+}
+
+### Get a list of all APIs
+PUT https://www.management.azure-api.net/apis?api-version={{apiVersion}}
+Authorization: {{apiKey}} 
+
+### Import the microservice into APIM
+PUT https://www.management.azure-api.net/apis/gadget-store?api-version={{apiVersion}}
+Authorization: {{apiKey}} 
+
+{
+    "properties": {
+        "contentFormat": "swagger-link-json",
+        "contentValue": "",
+        "path": "gadget"
+    }
+}
+

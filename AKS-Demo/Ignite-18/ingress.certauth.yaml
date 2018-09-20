@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-world-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-controller/auth-tls-chain"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "false"
+spec:
+  tls:
+  - hosts:
+    - aks-demo.westus.cloudapp.azure.com
+    secretName: tls-secret
+  rules:
+  - host: aks-demo.westus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /order
+        backend:
+          serviceName: order-management-service
+          servicePort: 80
