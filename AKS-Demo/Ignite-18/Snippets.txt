@@ -1,0 +1,8 @@
+https://raw.githubusercontent.com/miaojiang/APIM-Demo/master/AKS-Demo/Ignite-18/Orders.json
+
+{
+  "itemId": "1",
+  "quantity": 5
+}
+
+<authentication-certificate thumbprint="85AF48CBF63BEC13B0BAE5CA463D2535550290FE"/>

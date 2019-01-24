@@ -1,5 +1,5 @@
 ### Call AKS Directly
-POST https://aks-demo.westus.cloudapp.azure.com
+POST https://aks-demo.westus.cloudapp.azure.com/order
 Content-Type: application/json
 
 {
@@ -8,18 +8,21 @@ Content-Type: application/json
 }
 
 ### Get a list of all APIs
-PUT https://www.management.azure-api.net/apis?api-version={{apiVersion}}
+GET https://management.azure.com/subscriptions/c6a33fd3-e442-48a4-b82d-bcc4ad8a71d7/resourceGroups/Api-Default-West-US/providers/Microsoft.ApiManagement/service/www/apis?api-version={{apiVersion}}
 Authorization: {{apiKey}} 
 
 ### Import the microservice into APIM
-PUT https://www.management.azure-api.net/apis/gadget-store?api-version={{apiVersion}}
+PUT https://management.azure.com/subscriptions/c6a33fd3-e442-48a4-b82d-bcc4ad8a71d7/resourceGroups/Api-Default-West-US/providers/Microsoft.ApiManagement/service/www/apis/gadget-store?api-version={{apiVersion}}
 Authorization: {{apiKey}} 
+If-Match: *
+Content-Type: application/json
 
 {
     "properties": {
         "contentFormat": "swagger-link-json",
-        "contentValue": "",
+        "contentValue": "https://raw.githubusercontent.com/miaojiang/APIM-Demo/master/AKS-Demo/Ignite-18/Orders.json",
         "path": "gadget"
     }
 }
 
+###
